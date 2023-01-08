@@ -1,18 +1,30 @@
 const root = document.querySelector("#root");
 
-/*
-Component Lifecycle : memungkinkan kita bisa mengeksekusi sebuah function dimana waktu eksekusinya itu pada saat 
-component tersebut di render. Jadi pas component itu di render oleh browser, nah disitulah kita bisa melakukan sesuatu
-dengan menggunakan function javascript 
-*/
-
 function App() {
-  React.useEffect(() => {
-    console.log(document.getElementById('judul'));
-  });
-  return <h1 id="judul">Hello Ini Judul</h1>;
+  const [nama, setNama] = React.useState("yazid");
+
+  const ketikaSubmit = (event) => {
+    event.preventDefault();
+
+    console.log('Nama : ', nama)
+  };
+
+  return (
+    <form onSubmit={ketikaSubmit}>
+      <div>
+        <label>Nama : </label>
+        <input
+          type="text"
+          name="nama"
+          value={nama}
+          onChange={(event) => {
+            setNama(event.target.value);
+          }}
+        />
+      </div>
+      <button type="submit">Kirim</button>
+    </form>
+  );
 }
 
-setTimeout(() => {
-    ReactDOM.render(<App />, root);
-}, 1000);
+ReactDOM.render(<App />, root);
