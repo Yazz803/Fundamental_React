@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- 
+        Babel ini adalah JavaScript Compiler, jadi kita bisa nulis syntax javascript yang next generation
+        atau javascript versi baru yang fiturnya terbaru juga. Kemudian di compile dengan babel, dia akan
+        menjadi code javascript yang bisa diterima dengan banyak browser. Dengan babel, code JS yang terbaru tadi 
+        di compile ke code JS yang bisa diterima oleh banyak browser, termasuk browser yg lawas. Jadi browser2 yg dipake
+        oleh user, browser versi lama, itu bisa dijalanin code JS kita karena di compile sama Babel. Babel juga bisa 
+        menstransformasi code javascript yang tidak standar, contohnya JSX/typescript/flow.
+    -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Library ini digunakan untuk membuat React Element dengan API nya yaitu React.createELement() -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- Library ini digunakan untuk merender Element yg kita buat sebelumnya menggunakan ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        const root = document.querySelector('#root')
+
+        // function ini jadi object jika dijadikan React Component. Nama parameter ini bebas, mau ditulis selain props juga bisa
+        // jadi si parameter ini adalah object yg berisikan banyak properties.
+        function Halo(props) { // jadi props ini representasi dari props yg kita set di line 37
+            return <p className={props.contoh}>halo <b>{props.name}</b></p>  // cara manggil property name, panggil dulu nama object nya terus key nya apa..
+        }
+
+        // React Component adalah function JS yg pure/reguler yg return nya React Element dan nama functionnya diawali dengan Huruf besar
+        const element = (
+            <>
+                <Halo name="yazid" contoh="helo-1" />
+                <Halo name="sutaro" />
+            </>
+        )
+
+        // param 2 => ke path mana element tersebut akan di render
+        ReactDOM.render(element, root)
+        // oleh ReactDOM.render itu diproses/dirender dari object jadi DOM Node yang nantinya di render ke root/path nya
+    </script>
+</body>
+</html>

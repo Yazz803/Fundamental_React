@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- 
+        Babel ini adalah JavaScript Compiler, jadi kita bisa nulis syntax javascript yang next generation
+        atau javascript versi baru yang fiturnya terbaru juga. Kemudian di compile dengan babel, dia akan
+        menjadi code javascript yang bisa diterima dengan banyak browser. Dengan babel, code JS yang terbaru tadi 
+        di compile ke code JS yang bisa diterima oleh banyak browser, termasuk browser yg lawas. Jadi browser2 yg dipake
+        oleh user, browser versi lama, itu bisa dijalanin code JS kita karena di compile sama Babel. Babel juga bisa 
+        menstransformasi code javascript yang tidak standar, contohnya JSX/typescript/flow.
+    -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Library ini digunakan untuk membuat React Element dengan API nya yaitu React.createELement() -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- Library ini digunakan untuk merender Element yg kita buat sebelumnya menggunakan ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        const root = document.querySelector('#root')
+
+        function ngegas(text) {
+            return text.toUpperCase()
+        }
+
+        // const name = 'Yazid'
+        // const className = 'heading-1'
+        // const element = <h1 className={className}>Hello {ngegas(name)}. {new Date().toLocaleDateString()}</h1>
+        // Cara meng embed javascript expression di dalam JSX ELement
+        // Jadi bukan cuma  buat variabel, bisa javascript expression apapun selama itu valid
+        // className => sebutannya props di react
+
+        const element = (
+            <img src="./anime7.webp" width={200} />
+        )
+        // karena tag img merupakan empty element(img, br, hr, link, meta), maka dibutuhkan sub closing tag "/".
+
+        // param 1 => element apa yang mau di render
+        // param 2 => ke path mana element tersebut akan di render
+        ReactDOM.render(element, root)
+        // oleh ReactDOM.render itu diproses/dirender dari object jadi DOM Node yang nantinya di render ke root/path nya
+    </script>
+</body>
+</html>

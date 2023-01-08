@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- 
+        Babel ini adalah JavaScript Compiler, jadi kita bisa nulis syntax javascript yang next generation
+        atau javascript versi baru yang fiturnya terbaru juga. Kemudian di compile dengan babel, dia akan
+        menjadi code javascript yang bisa diterima dengan banyak browser. Dengan babel, code JS yang terbaru tadi 
+        di compile ke code JS yang bisa diterima oleh banyak browser, termasuk browser yg lawas. Jadi browser2 yg dipake
+        oleh user, browser versi lama, itu bisa dijalanin code JS kita karena di compile sama Babel. Babel juga bisa 
+        menstransformasi code javascript yang tidak standar, contohnya JSX/typescript/flow.
+    -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Library ini digunakan untuk membuat React Element dengan API nya yaitu React.createELement() -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+
+    <!-- Library ini digunakan untuk merender Element yg kita buat sebelumnya menggunakan ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script type="text/babel">
+      const root = document.querySelector("#root");
+
+      function tick() {
+        // Hanya mengupdate data yang berubah saja, kan jam itu selalu berubah tuh, jadi yg ke refresh itu cuma data itu aja, keseluruhan div nya engga ke refresh
+        const element = (
+          <div>
+            <h1>Jam Sekarang</h1>
+            {new Date().toLocaleTimeString()}
+          </div>
+        );
+        
+        ReactDOM.render(element, root);
+
+        // Kalo pake vanilla javascript, ini semuanya ke refresh, tag div root nya aja ikut kerefresh
+        // const element = `
+        // <div>
+        //     <h1>Jam Sekarang</h1>
+        //     ${new Date().toLocaleTimeString()}
+        // </div>
+        // `
+        // root.innerHTML = element;
+
+      }
+
+      tick();
+
+      setInterval(function() {
+        tick()
+      }, 1000)
+    </script>
+  </body>
+</html>

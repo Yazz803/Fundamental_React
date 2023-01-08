@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Library ini digunakan untuk membuat React Element dengan API nya yaitu React.createELement() -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- Library ini digunakan untuk merender Element yg kita buat sebelumnya menggunakan ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        const root = document.querySelector('#root')
+
+        // variabel element ini berisikan data object literal
+        const h1 = React.createElement('h1', {
+            children: 'Hello from React',
+            className: 'heading-1'
+        })
+        const p1 = React.createElement('p', {
+            children: 'Hello paragrap 1',
+        })
+        const p2 = React.createElement('p', {
+            children: 'Hello paragrap 2',
+        })
+
+        // kita harus bungkus dengan satu element Parent untuk bikin element side by side
+        // const element = React.createElement('div', {
+        //     children: [p1, p2]
+        // })
+
+        // Ada juga di React yg namanya fragment. jadi React Fragment ini kayak empty element aja
+        // jadi kalo kita mau nge render element side by side tapi gk mau ada element parent nya kayak div (parent node), kita bisa pake React Fragment
+        const element = React.createElement(React.Fragment, {
+            children: [p1, p2]
+        })
+
+        console.log(element);
+        // param 1 => element apa yang mau di render
+        // param 2 => ke path mana element tersebut akan di render
+        ReactDOM.render(element, root)
+        // oleh ReactDOM.render itu diproses/dirender dari object jadi DOM Node yang nantinya di render ke root/path nya
+    </script>
+</body>
+</html>

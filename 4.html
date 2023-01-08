@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Library ini digunakan untuk membuat React Element dengan API nya yaitu React.createELement() -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- Library ini digunakan untuk merender Element yg kita buat sebelumnya menggunakan ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        const root = document.querySelector('#root')
+
+        const li = React.createElement('li', {
+            children: 'apple'
+        })
+        const li2 = React.createElement('li', {
+            children: 'Orange'
+        })
+        const li3 = React.createElement('li', {
+            children: 'Grape'
+        })
+
+        // karena di param 2 kita gk mau nulis apa2, kita bisa kasih null. kita mau ngasih content aja
+        // untuk ngasih content aja, kita bisa pake parameter ke 3
+        // jadi kita bisa nulis content nya itu di parameter ke 3.
+        // const element = React.createElement('ul', null, 'Hello From Content')
+
+        // kita juga bisa nambahin className di parameter ke 2
+        // const element = React.createElement('ul', {className: 'list'}, 'Hello from content')
+        
+        // kita bisa menambahkan content di parameter ke 3, 4, 5 dst... jadi untuk parameter 3 sampai seterusnya itu dianggap children
+        // Param 1 => tag name
+        // Param 2 => property di dalam tag nya
+        // Param 3... => content di dalam tag nya / children
+        // const element = React.createElement('ul', {className: 'list'}, li, li2, li3)
+        
+        const element = React.createElement(
+            'ul',
+            {className: 'list'},
+            React.createElement('li', null, 'Jeruk') ,   
+            React.createElement('li', null, 'Mangga'),   
+            React.createElement('li', null, 'Ahmad')    
+        )
+
+        
+
+        // param 1 => element apa yang mau di render
+        // param 2 => ke path mana element tersebut akan di render
+        ReactDOM.render(element, root)
+        // oleh ReactDOM.render itu diproses/dirender dari object jadi DOM Node yang nantinya di render ke root/path nya
+    </script>
+</body>
+</html>
